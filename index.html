@@ -1,0 +1,131 @@
+<! DOCTYPE HTML>
+<html>
+<meta charset="UTF-8">
+<head>
+	<style type="text/css">
+
+	body{
+		padding-top: 2%;
+		background: #eee;
+	}
+
+	#wrapper{
+		padding-left: 10%;
+	}
+
+	#price, #tax, #total ,span{
+		font-size: 1em;
+		color: #ccc;
+		transition:all .5s ease;
+		line-height: 2em;
+
+	}
+
+	#qty{
+		height: 50px;
+	}
+
+	#product{
+		float: left;
+		width: 50%;
+	}
+
+	#product{
+		overflow: hidden;
+		padding-right: 2em;
+		transition: all 1s ease;
+	}
+
+	#product:hover{
+		width: 80%;
+	}
+
+	#buy{
+		border: 3px solid #000;
+		color: #000;
+		background:transparent;
+		padding: 5px;
+		transition:all 1s ease;
+	}
+
+	#buy:hover{
+		color:#fff;
+		background: #000;
+		cursor: pointer;
+	}
+
+	#success{
+		background: #000;
+		border: 1px solid #000;
+		color: #fff;
+		border-radius: 20px;
+		padding: 8px;
+		opacity: 1;
+		text-align: center;
+	}
+
+
+
+
+
+	</style>
+</head>
+<body>
+        <div id="wrapper">
+        	<p id="success"></p>
+        	<h1>Break the views</h1><br>
+			<img id ="product" src="Tshirt2.jpg">
+			<div id="our-prices">
+			<span>Price: </span><span id ="price">10</span><span> €</span><br>
+			<span>Tax: <span id = "tax">2,3</span><span> €</span><br>
+			<span>Total: </span><span id = "total">12,3</span><span> €</span><br>
+			<input id ="qty" type="range" value="1" min="0" max="10"></input><br>
+			<span>Picked: </span><span id ="qty">1</span><span> product(s):</span><br><br>
+			<button id="buy">ADD TO CART</button>
+		</div>
+		</div>
+
+
+
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript">
+
+var qty;
+
+$(document).ready(function() {
+
+  $("#success").hide();
+  qty = $("#qty").val();
+  console.log(qty);
+
+  // Handle buy button
+  $("#buy").click(function() {
+    $("#success").fadeIn(2000);
+    $("#success").text(qty + " products were added to your cart");
+    $("#success").fadeOut(2000);
+    return false;
+  }); // <-- Close bracket for handle function
+
+  // Handle quantity change
+  $("#qty").change(function() {
+    qty = $(this).val();
+    var price = qty * 10;
+    var tax = price * 0.23;
+    var total = price + tax;
+
+    $("#price").text(price);
+    $("#tax").text(tax.toFixed(2));
+    $("#total").text(total);
+    $("span #qty").text(qty);
+    //return false;
+  }); // <-- Close bracket for handle function
+});
+
+
+
+
+</script>
+
+</body>
